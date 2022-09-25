@@ -9,7 +9,7 @@ namespace POngBaratox
     internal class Adotante
     {
         public String Nome { get; set; }
-        public int CPF { get; set; }
+        public String CPF { get; set; }
         public String Sexo { get; set; }
         public DateTime DataNascimento { get; set; }
         public String Telefone { get; set; }
@@ -21,7 +21,7 @@ namespace POngBaratox
 
         }
 
-        public Adotante(string nome, int cPF, string sexo, DateTime dataNascimento, string telefone, Endereco endereco)
+        public Adotante(string nome, String cPF, string sexo, DateTime dataNascimento, string telefone, Endereco endereco)
         {
             Nome = nome;
             CPF = cPF;
@@ -36,7 +36,7 @@ namespace POngBaratox
             Console.Write("Inform o Nome: ");
             string n = Console.ReadLine();
             Console.Write("Inform o CPF: ");
-            int cpf = int.Parse(Console.ReadLine());
+            string cpf = Console.ReadLine();
             Console.Write("Inform o Sexo: ");
             string sx = Console.ReadLine();
             Console.Write("Inform a Data de Nascimento: ");
@@ -44,9 +44,9 @@ namespace POngBaratox
             Console.Write("Inform um Telefone: ");
             string nm = Console.ReadLine();
             Endereco Endereco = new Endereco();
-            Endereco.coleta_dados();
+            Endereco end = Endereco.coleta_dados();
 
-            return new Adotante(n, cpf, sx, dn, nm, Endereco);
+            return new Adotante(n, cpf, sx, dn, nm, end);
         }
 
     }
