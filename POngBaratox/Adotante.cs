@@ -33,15 +33,15 @@ namespace POngBaratox
 
         public Adotante Coleta_Dados()
         {
-            Console.Write("Inform o Nome: ");
+            Console.Write("Informe o Nome: ");
             string n = Console.ReadLine();
-            Console.Write("Inform o CPF: ");
+            Console.Write("Informe o CPF: ");
             string cpf = Console.ReadLine();
-            Console.Write("Inform o Sexo: ");
+            Console.Write("Informe o Sexo: ");
             string sx = Console.ReadLine();
-            Console.Write("Inform a Data de Nascimento: ");
+            Console.Write("Informe a Data de Nascimento: ");
             DateTime dn =  DateTime.Parse(Console.ReadLine());
-            Console.Write("Inform um Telefone: ");
+            Console.Write("Informe um Telefone: ");
             string nm = Console.ReadLine();
             Endereco Endereco = new Endereco();
             Endereco end = Endereco.coleta_dados();

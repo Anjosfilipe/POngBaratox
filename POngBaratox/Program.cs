@@ -8,6 +8,7 @@ namespace POngBaratox
     {
         static void Menu_inicial()
         {
+            Console.Clear();
             Console.WriteLine("\t\t\t\t>>>>>>>> Informe a Opção desejada <<<<<<<<<<<<");
             Console.WriteLine("\t\t\t\t>>>>>>>>   1 - Cadastrar Animal   <<<<<<<<<<<<");
             Console.WriteLine("\t\t\t\t>>>>>>>>   2 - Cadastrar Adotante <<<<<<<<<<<<");
@@ -54,7 +55,7 @@ namespace POngBaratox
                     break;
                 case 2:
                     Adotante people = adotante.Coleta_Dados();
-                    cmd.CommandText = "INSERT INTO Adotante(Nome, CPF, Data_Nascimento, Telefone,CEP, Rua, Cidade, Bairro, Estado, Numero_casa) VALUES (@NomeP, @CPFp, @Data_Nascimento, @Telefone, @CEPp, @Rua, @Cidade, @Bairro, @Estado, @Numero_casa);";
+                    cmd.CommandText = "INSERT INTO Adotante( Nome, CPF, Data_Nascimento, Telefone,CEP, Rua, Cidade, Bairro, Estado, Numero_casa) VALUES (@NomeP, @CPFp, @Data_Nascimento, @Telefone, @CEPp, @Rua, @Cidade, @Bairro, @Estado, @Numero_casa);";
 
                     SqlParameter nomeP = new SqlParameter("@NomeP", System.Data.SqlDbType.VarChar, 30);
                     SqlParameter CPFp = new SqlParameter("@CPFp", System.Data.SqlDbType.VarChar, 11);
@@ -94,10 +95,31 @@ namespace POngBaratox
                     Console.ReadKey();
 
                     break;
-                case 4:
-                    Console.WriteLine("Bora la neh");
+                case 3:
+
+                    Console.Write("Informe o ID do Animal a ser doado: ");
+                    int id = int.Parse(Console.ReadLine());
+                    Console.Write("Informe o CPF do Adotante: ");
+                    string cpf = Console.ReadLine();
+
+                    cmd.CommandText = "UPDATE Animal SET CPF = @CPFa WHERE ID_Chip = @ID_chip;";
+
+
+                    SqlParameter ID_chip = new SqlParameter("@ID_chip", System.Data.SqlDbType.Int);
+                    SqlParameter CPFa = new SqlParameter("@CPFa", System.Data.SqlDbType.VarChar, 11);
+
+                    ID_chip.Value = id;
+                    CPFa.Value = cpf;
+
+                    cmd.Parameters.Add(CPFa);
+                    cmd.Parameters.Add(ID_chip);
+              
+                    cmd.ExecuteNonQuery();
+                    Console.WriteLine("\t\t\t\t>>>>>>>> DOAÇÃO REALIZADA COM SUCESSO! <<<<<<<<<<<<");
+                    Console.ReadKey();
+
                     break;
-                case 5:
+                case 4:
                     Console.WriteLine("Bora la neh");
                     break;
                 case 0:
@@ -110,10 +132,11 @@ namespace POngBaratox
         }
         static void Main(string[] args)
         {
-            Menu_inicial();
-            int opc = int.Parse(Console.ReadLine());
+            int opc;
             do
             {
+                Menu_inicial();
+                opc = int.Parse(Console.ReadLine());
                 Funcionamento(opc);
 
             } while (opc != 0);
